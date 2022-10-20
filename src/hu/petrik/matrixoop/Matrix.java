@@ -20,6 +20,66 @@ public class Matrix {
         }
     }
 
+
+    public int getElemekOsszege(){
+        int osszeg = 0;
+
+        for (int[] sor : this.m) {
+            for (int elem : sor) {
+                osszeg += elem;
+            }
+        }
+        return osszeg;
+    }
+
+    public int getPozitivElemekSzama(){
+        int db = 0;
+        for (int[] sor : this.m) {
+            for (int elem : sor) {
+                if (elem > 0){
+                    db++;
+                }
+            }
+        }
+        return db;
+    }
+
+
+    public int getLegNagyobbElem(){
+        int legnagyob = this.m[0][0];
+        for (int i = 0; i < this.m[0].length; i++) {
+            for (int j = 0; j < this.m.length; j++) {
+                if (legnagyob < this.m[j][i]){
+                    legnagyob = this.m[j][i];
+                }
+            }
+        }
+        return legnagyob;
+    }
+
+
+    public int[] findElsoPozitivElem(){
+        int sorIndex = 0;
+        int oszlopIndex = 0;
+        while (sorIndex < this.m.length && this.m[sorIndex][oszlopIndex] < 1){
+            oszlopIndex = 0;
+            while (oszlopIndex < this.m[sorIndex].length && this.m[sorIndex][oszlopIndex] < 1){
+                oszlopIndex++;
+            }
+            if (oszlopIndex == this.m[sorIndex].length){
+                oszlopIndex =0;
+                sorIndex++;
+            }
+        }
+        if (sorIndex == this.m.length){
+            sorIndex = -1;
+            oszlopIndex = -1;
+        }
+
+        return new int[] {sorIndex,oszlopIndex};
+    }
+
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
